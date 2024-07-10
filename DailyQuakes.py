@@ -1,5 +1,4 @@
 from datetime import datetime, date, timedelta, timezone
-import os
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
