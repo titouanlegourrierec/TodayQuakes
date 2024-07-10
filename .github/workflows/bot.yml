@@ -21,13 +21,6 @@ jobs:
       with:
         python-version: '3.11.8'
 
-    - name: Print Test Secret
-      run: |
-        echo API_KEY is ${{ secrets.API_KEY }}
-        echo API_KEY_SECRET is ${{ secrets.API_KEY_SECRET }}
-        echo ACCESS_TOKEN is ${{ secrets.ACCESS_TOKEN }}
-        echo ACCESS_TOKEN_SECRET is ${{ secrets.ACCESS_TOKEN_SECRET }}
-
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
