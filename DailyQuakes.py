@@ -133,13 +133,13 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     fig, ax = plt.subplots(facecolor='black', subplot_kw={'projection': ccrs.Robinson()}, figsize=(20, 20))
     ax.patch.set_facecolor('black')
 
-    # Add land and borders with custom styling
-    ax.add_feature(cfeature.LAND, edgecolor='white', facecolor='none', linewidth=0.75)
-    ax.add_feature(cfeature.BORDERS, edgecolor='white', facecolor='none', linewidth=0.75)
-
     # Plot earthquake data as scatter points
     scatter = ax.scatter(df["Longitude"], df["Latitude"], transform=ccrs.PlateCarree(),
                         s=30, c=df["Magnitude"], cmap=custom_hot, vmin=0, vmax=10, alpha=1, edgecolors='none')
+    
+    # Add land and borders with custom styling
+    ax.add_feature(cfeature.LAND, edgecolor='white', facecolor='none', linewidth=0.75)
+    ax.add_feature(cfeature.BORDERS, edgecolor='white', facecolor='none', linewidth=0.75)
     
     # Customize plot appearance
     plt.setp(ax.spines.values(), color='black')
