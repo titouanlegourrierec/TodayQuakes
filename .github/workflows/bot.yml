@@ -16,29 +16,32 @@ jobs:
     - name: Set up Python
       uses: actions/setup-python@v5
       with:
-        python-version: '3.11.8'  # Spécifiez la version de Python que vous utilisez
+        python-version: '3.11.8'
 
     - name: Install dependencies
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Generate and Tweet Image
+    - name: Execute DailyQuakes.py
+      run: python DailyQuakes.py
+
+    - name: Get current date
+      id: date
+      run: echo "DATE=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
+
+    - name: Commit and Push DailyQuakes.py changes
+      run: |
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git add .
+        git commit -m "Update from DailyQuakes.py on ${{ env.DATE }}"
+        git push
+
+    - name: Generate and Tweet Image with bot.py
       env:
         API_KEY: ${{ secrets.API_KEY }}
         API_KEY_SECRET: ${{ secrets.API_KEY_SECRET }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
       run: python bot.py
-
-    - name: Get current date
-      id: date
-      run: echo "DATE=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
-
-    - name: Commit image
-      run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
-        git add .
-        git commit -m "Add generated image on ${{ env.DATE }}"
-        git push

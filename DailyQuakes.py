@@ -1,4 +1,5 @@
 from datetime import datetime, date, timedelta, timezone
+import os
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -162,3 +163,22 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
 
     # Save the figure
     plt.savefig(f"outputs/{filename}.png", dpi=300, bbox_inches='tight', facecolor='black')
+
+def main():
+
+    # Calculate the dates for fetching earthquake data
+    today = date.today()
+    yesterday = today - timedelta(1)
+    starttime = f"{yesterday.year}-{yesterday.month}-{yesterday.day}"
+    endtime = f"{today.year}-{today.month}-{today.day}"
+
+    # Fetch and process earthquake data
+    earthquake_json = fetch_earthquake_data(starttime=starttime, endtime=endtime)
+    df = process_earthquake_data(earthquake_json=earthquake_json)
+    earthquakes_geodata = create_geodataframe(df)
+    plot_earthquakes(df, filename=starttime)
+
+    df.to_csv(f"data/{starttime}.csv", index=False)
+
+if __name__ == "__main__":
+    main()

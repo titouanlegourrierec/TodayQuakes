@@ -2,22 +2,17 @@ import os
 from datetime import datetime, date, timedelta, timezone
 
 import tweepy
+import pandas as pd
 
 from DailyQuakes import fetch_earthquake_data, process_earthquake_data, create_geodataframe, plot_earthquakes, twitter_message
 
 def main():
 
-    # Calculate the dates for fetching earthquake data
     today = date.today()
     yesterday = today - timedelta(1)
     starttime = f"{yesterday.year}-{yesterday.month}-{yesterday.day}"
-    endtime = f"{today.year}-{today.month}-{today.day}"
 
-    # Fetch and process earthquake data
-    earthquake_json = fetch_earthquake_data(starttime=starttime, endtime=endtime)
-    df = process_earthquake_data(earthquake_json=earthquake_json)
-    earthquakes_geodata = create_geodataframe(df)
-    plot_earthquakes(df, filename=starttime)
+    df = pd.read_csv("data/{starttime}.csv")
 
     # Load Twitter API credentials from environment variables
     API_KEY = os.getenv("API_KEY")
