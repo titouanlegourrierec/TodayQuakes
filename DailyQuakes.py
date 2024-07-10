@@ -66,8 +66,39 @@ def process_earthquake_data(earthquake_json : dict) -> pd.DataFrame:
         "Depth": depth_list
     })
 
+def twitter_message(df : pd.DataFrame, starttime : str) -> str:
+    """
+    Generates a message to be posted on Twitter based on the earthquake data.
 
-def create_geodataframe(df):
+    Parameters:
+        - df (DataFrame): Contains earthquake data with 'Time', 'Magnitude', 'Longitude', 'Latitude', and 'Depth' columns.
+
+    Returns:
+        - str: A message summarizing the earthquake data.
+    """
+
+    parsed_date = datetime.strptime(starttime, "%Y-%m-%d")
+    formatted_date = parsed_date.strftime("%B %d, %Y")
+
+    num_earthquakes = len(df)
+    minor_earthquakes = len(df[df["Magnitude"].between(0, 1)])
+    small_earthquakes = len(df[df["Magnitude"].between(1, 3)])
+    moderate_earthquakes = len(df[df["Magnitude"].between(3, 5)])
+    strong_earthquakes = len(df[df["Magnitude"].between(5, 7)])
+    major_earthquakes = len(df[df["Magnitude"] >= 7])
+
+    message = f"🌍 Global Earthquakes on {formatted_date}:\n\n"
+    message += f"🔍 {num_earthquakes} Earthquakes detected.\n"
+    message += f"🟢 {minor_earthquakes} ({(minor_earthquakes*100/num_earthquakes):.1f}%) Minor earthquakes (0-1)\n"
+    message += f"🟡 {small_earthquakes} ({(small_earthquakes*100/num_earthquakes):.1f}%) Small earthquakes (1-3)\n"
+    message += f"🟠 {moderate_earthquakes} ({(moderate_earthquakes*100/num_earthquakes):.1f}%) Moderate earthquakes (3-5)\n"
+    message += f"🔴 {strong_earthquakes} ({(strong_earthquakes*100/num_earthquakes):.1f}%) Strong earthquakes (5-7)\n"
+    message += f"⚫️ {major_earthquakes} ({(major_earthquakes*100/num_earthquakes):.1f}%) Major earthquakes (7+)"
+
+    return message
+
+
+def create_geodataframe(df : pd.DataFrame) -> gpd.GeoDataFrame:
     """
     Converts a pandas DataFrame containing earthquake data into a GeoDataFrame.
 
@@ -83,7 +114,7 @@ def create_geodataframe(df):
     return gpd.GeoDataFrame(df, crs="EPSG:4326", geometry=earthquakes_geometry)
 
 
-def plot_earthquakes(df, filename):
+def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     """
     Plots earthquake data on a world map and saves the figure.
 
@@ -94,7 +125,7 @@ def plot_earthquakes(df, filename):
 
     # Define custom color map for earthquake magnitudes
     colors = ["white", "yellow", "#CD0000","#430000"]
-    n_bins = 100
+    n_bins = 10
     cmap_name = "custom_hot"
     custom_hot = LinearSegmentedColormap.from_list(cmap_name, colors, N=n_bins)
 
@@ -124,21 +155,10 @@ def plot_earthquakes(df, filename):
     cbar.set_ticklabels(['0', '10'])  
 
     # Add text annotations
-    fig.text(0.82, 0.67, "Earthquakes", color="white", ha="left", va="bottom", fontsize=18, fontname="Inter")
-    fig.text(0.82, 0.658, "Data Source - USGS", color="white", ha="left", va="bottom", fontsize=10)
-    fig.text(0.82, 0.648, "@TodaysEarthquakes", color="white", ha="left", va="bottom", fontsize=10)
+    fig.text(0.83, 0.675, "Earthquakes", color="white", ha="left", va="bottom", fontsize=18, fontname="Inter")
+    fig.text(0.83, 0.663, datetime.strptime(filename, "%Y-%m-%d").strftime("%B %d, %Y"), color="white", ha="left", va="bottom", fontsize=12, fontname="Inter")
+    fig.text(0.83, 0.647, "Data Source - USGS", color="white", ha="left", va="bottom", fontsize=10)
+    fig.text(0.83, 0.637, "@TodayQuakes", color="white", ha="left", va="bottom", fontsize=10)
 
     # Save the figure
-    plt.savefig(filename, dpi=300, bbox_inches='tight', facecolor='black')
-
-
-def main():
-    starttime = "2014-01-09"
-    endtime = "2014-01-10"
-    earthquake_json = fetch_earthquake_data(starttime, endtime)
-    df = process_earthquake_data(earthquake_json)
-    earthquakes_geodata = create_geodataframe(df)
-    plot_earthquakes(df, f"outputs/{starttime}.png")
-
-if __name__ == "__main__":
-    main()
+    plt.savefig(f"outputs/{filename}.png", dpi=300, bbox_inches='tight', facecolor='black')
