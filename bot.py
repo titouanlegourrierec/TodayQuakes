@@ -12,7 +12,7 @@ def main():
     yesterday = today - timedelta(1)
     starttime = f"{yesterday.year}-{yesterday.month}-{yesterday.day}"
 
-    df = pd.read_csv("data/{starttime}.csv")
+    df = pd.read_csv(f"data/{starttime}.csv")
 
     # Load Twitter API credentials from environment variables
     API_KEY = os.getenv("API_KEY")
