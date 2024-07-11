@@ -9,7 +9,11 @@ import pandas as pd
 import requests
 from shapely.geometry import Point
 
+from config_logging import configure_logging, log_execution_time
 
+logging = configure_logging()
+
+@log_execution_time(message="Fetching earthquake data from USGS API.")
 def fetch_earthquake_data(starttime : str, endtime : str) -> dict:
     """
     Fetches earthquake data from the USGS Earthquake Catalog API.
@@ -28,7 +32,7 @@ def fetch_earthquake_data(starttime : str, endtime : str) -> dict:
 
     return earthquake_json
 
-
+@log_execution_time(message="Processing earthquake data.")
 def process_earthquake_data(earthquake_json : dict) -> pd.DataFrame:
     """
     Processes earthquake data and returns it as a pandas DataFrame.
@@ -66,6 +70,7 @@ def process_earthquake_data(earthquake_json : dict) -> pd.DataFrame:
         "Depth": depth_list
     })
 
+@log_execution_time(message="Generating Twitter message for earthquake data.")
 def twitter_message(df : pd.DataFrame, starttime : str) -> str:
     """
     Generates a message to be posted on Twitter based on the earthquake data.
@@ -113,7 +118,7 @@ def create_geodataframe(df : pd.DataFrame) -> gpd.GeoDataFrame:
 
     return gpd.GeoDataFrame(df, crs="EPSG:4326", geometry=earthquakes_geometry)
 
-
+@log_execution_time(message="Plotting earthquake data on a world map.")
 def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     """
     Plots earthquake data on a world map and saves the figure.
@@ -177,6 +182,7 @@ def main():
     earthquakes_geodata = create_geodataframe(df)
     plot_earthquakes(df, filename=starttime)
 
+    logging.info(f"Earthquake data for {starttime} processed successfully. Saving to CSV at f'data/{starttime}.csv'.")
     df.to_csv(f"data/{starttime}.csv", index=False)
 
 if __name__ == "__main__":

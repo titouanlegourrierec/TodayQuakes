@@ -6,7 +6,11 @@ import pandas as pd
 import numpy as np
 
 from DailyQuakes import twitter_message
+from config_logging import configure_logging, log_execution_time
 
+logging = configure_logging()
+
+@log_execution_time(message="Authenticating with Twitter API.")
 def authenticate_twitter():
     """
     Authenticates a user with the Twitter API using Tweepy.
@@ -33,7 +37,7 @@ def authenticate_twitter():
     
     return client, api
 
-
+@log_execution_time(message="Posting tweet.")
 def post_tweet(client : tweepy.Client, api : tweepy.API, message : str, image_path : str) -> tweepy.Response:
     """
     Posts a tweet with an image using the Twitter API.
@@ -56,7 +60,7 @@ def post_tweet(client : tweepy.Client, api : tweepy.API, message : str, image_pa
     
     return response
 
-
+@log_execution_time(message="Managing memory.")
 def manage_memory(memory : list[list], api : tweepy.API) -> None:
     """
     Manages the memory of posted tweets to avoid exceeding a maximum size.
@@ -74,6 +78,7 @@ def manage_memory(memory : list[list], api : tweepy.API) -> None:
     MAX_MEMORY_SIZE = 30
     if len(memory) > MAX_MEMORY_SIZE:
         media_path, tweet_id = memory.pop(0)
+        logging.info(f"Removing media file: {media_path} and tweet with ID: {tweet_id}")
         os.remove(media_path)
         api.destroy_status(tweet_id)
 
