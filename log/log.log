@@ -1,48 +1,11 @@
 ========================================================================================================================
 ===============================================         LOG FILE         ===============================================
-========================================================================================================================2024-07-11 10:27:24,119 - INFO - Fetching earthquake data from USGS API.
-fetch_earthquake_data executed in 0.50 seconds
-2024-07-11 10:27:24,120 - INFO - Processing earthquake data.
-process_earthquake_data executed in 0.00 seconds
-2024-07-11 10:27:25,437 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,439 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,439 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,441 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,442 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,442 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,443 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,511 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,511 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,513 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,514 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,515 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,516 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,517 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,519 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,520 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,520 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,520 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:25,521 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,118 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,118 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,119 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,119 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,120 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,121 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,121 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,122 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,122 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,122 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,123 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,123 - WARNING - findfont: Font family 'Inter' not found.
-2024-07-11 10:27:26,126 - INFO - Plotting earthquake data on a world map.
-plot_earthquakes executed in 2.00 seconds
+========================================================================================================================
+2024-07-11 10:27:24,119 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.50 seconds)
+2024-07-11 10:27:24,120 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2024-07-11 10:27:26,126 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 2.00 seconds)
 2024-07-11 10:27:26,126 - INFO - Earthquake data for 2024-7-10 processed successfully. Saving to CSV at 'data/2024-7-10.csv'.
-2024-07-11 10:27:27,047 - INFO - Authenticating with Twitter API.
-authenticate_twitter executed in 0.00 seconds
-2024-07-11 10:27:27,050 - INFO - Generating Twitter message for earthquake data.
-twitter_message executed in 0.00 seconds
-2024-07-11 10:27:29,018 - INFO - Posting tweet.
-post_tweet executed in 1.97 seconds
-2024-07-11 10:27:29,019 - INFO - Managing memory.
-manage_memory executed in 0.00 seconds
+2024-07-11 10:27:27,047 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2024-07-11 10:27:27,050 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2024-07-11 10:27:29,018 - INFO - Posting tweet. (post_tweet executed in 1.97 seconds)
+2024-07-11 10:27:29,019 - INFO - Managing memory. (manage_memory executed in 0.00 seconds)

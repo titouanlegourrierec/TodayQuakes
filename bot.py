@@ -103,5 +103,7 @@ def main() -> None:
     manage_memory(memory, api)
     np.save("data/memory.npy", memory)
 
+    logging.info("bot.py executed successfully.\n\n --- \n\n")
+
 if __name__ == "__main__":
     main()

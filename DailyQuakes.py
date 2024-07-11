@@ -185,5 +185,7 @@ def main():
     logging.info(f"Earthquake data for {starttime} processed successfully. Saving to CSV at 'data/{starttime}.csv'.")
     df.to_csv(f"data/{starttime}.csv", index=False)
 
+    logging.info(f"DailyQuakes.py executed successfully.")
+
 if __name__ == "__main__":
     main()
