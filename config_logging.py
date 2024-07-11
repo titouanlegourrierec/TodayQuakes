@@ -1,5 +1,6 @@
 import time
 import logging
+from functools import wraps
 
 def configure_logging():
     logging.basicConfig(filename='log/log.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', filemode='a')
