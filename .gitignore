@@ -3,3 +3,7 @@ env
 __pycache__
 .env
 test.ipynb
+
+2000_2023.csv
+2000_2023.feather
+2000_2023.parquet

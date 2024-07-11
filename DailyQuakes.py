@@ -182,7 +182,7 @@ def main():
     earthquakes_geodata = create_geodataframe(df)
     plot_earthquakes(df, filename=starttime)
 
-    logging.info(f"Earthquake data for {starttime} processed successfully. Saving to CSV at f'data/{starttime}.csv'.")
+    logging.info(f"Earthquake data for {starttime} processed successfully. Saving to CSV at 'data/{starttime}.csv'.")
     df.to_csv(f"data/{starttime}.csv", index=False)
 
 if __name__ == "__main__":

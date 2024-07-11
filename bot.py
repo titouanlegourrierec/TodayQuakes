@@ -11,7 +11,7 @@ from config_logging import configure_logging, log_execution_time
 logging = configure_logging()
 
 @log_execution_time(message="Authenticating with Twitter API.")
-def authenticate_twitter():
+def authenticate_twitter() -> tuple[tweepy.Client, tweepy.API]:
     """
     Authenticates a user with the Twitter API using Tweepy.
 
@@ -61,7 +61,7 @@ def post_tweet(client : tweepy.Client, api : tweepy.API, message : str, image_pa
     return response
 
 @log_execution_time(message="Managing memory.")
-def manage_memory(memory : list[list], api : tweepy.API) -> None:
+def manage_memory(memory : list[list[str]], api : tweepy.API) -> None:
     """
     Manages the memory of posted tweets to avoid exceeding a maximum size.
 
@@ -77,9 +77,10 @@ def manage_memory(memory : list[list], api : tweepy.API) -> None:
 
     MAX_MEMORY_SIZE = 30
     if len(memory) > MAX_MEMORY_SIZE:
-        media_path, tweet_id = memory.pop(0)
-        logging.info(f"Removing media file: {media_path} and tweet with ID: {tweet_id}")
+        media_path, csv_path, tweet_id = memory.pop(0)
+        logging.info(f"Removing media file: {media_path}, csv file: {csv_path} and tweet with ID: {tweet_id}")
         os.remove(media_path)
+        os.remove(csv_path)
         api.destroy_status(tweet_id)
 
 def main() -> None:
@@ -98,7 +99,7 @@ def main() -> None:
     response = post_tweet(client, api, twitter_message(df, starttime), f"outputs/{starttime}.png")
 
     memory = np.load("data/memory.npy").tolist()
-    memory.append([f"outputs/{starttime}.png", response.id])
+    memory.append([f"outputs/{starttime}.png", f"data/{starttime}.csv",response.data["id"]])
     manage_memory(memory, api)
     np.save("data/memory.npy", memory)
 
