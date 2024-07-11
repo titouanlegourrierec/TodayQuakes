@@ -118,6 +118,7 @@ def create_geodataframe(df : pd.DataFrame) -> gpd.GeoDataFrame:
 
     return gpd.GeoDataFrame(df, crs="EPSG:4326", geometry=earthquakes_geometry)
 
+@log_execution_time(message="Plotting earthquake data on a world map.")
 def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     """
     Plots earthquake data on a world map and saves the figure.
@@ -179,8 +180,6 @@ def main():
     earthquake_json = fetch_earthquake_data(starttime=starttime, endtime=endtime)
     df = process_earthquake_data(earthquake_json=earthquake_json)
     earthquakes_geodata = create_geodataframe(df)
-
-    logging.info("Plotting earthquake data on a world map.")
     plot_earthquakes(df, filename=starttime)
 
     logging.info(f"Earthquake data for {starttime} processed successfully. Saving to CSV at 'data/{starttime}.csv'.")
