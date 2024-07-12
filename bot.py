@@ -15,7 +15,8 @@ def authenticate_twitter() -> tuple[tweepy.Client, tweepy.API]:
     """
     Authenticates a user with the Twitter API using Tweepy.
 
-    This function retrieves API keys and access tokens from environment variables and uses them to authenticate with the Twitter API. It returns a Tweepy Client object for the Twitter API v2 and a Tweepy API object for the Twitter API v1.1.
+    This function retrieves API keys and access tokens from environment variables and uses them to authenticate with the Twitter API.
+    It returns a Tweepy Client object for the Twitter API v2 and a Tweepy API object for the Twitter API v1.1.
 
     Returns:
         tuple: A tuple containing:
@@ -57,6 +58,8 @@ def post_tweet(client : tweepy.Client, api : tweepy.API, message : str, image_pa
     
     media = api.media_upload(image_path)
     response = client.create_tweet(text=message,media_ids=[media.media_id])
+
+    logging.info(f"Tweet posted at 'https://x.com/TodayQuakes/status/{response.data['id']}'.")
     
     return response
 
@@ -65,7 +68,8 @@ def manage_memory(memory : list[list[str]], api : tweepy.API) -> None:
     """
     Manages the memory of posted tweets to avoid exceeding a maximum size.
 
-    This function checks if the memory list exceeds a predefined maximum size (MAX_MEMORY_SIZE). If it does, the function removes the oldest entry from the memory and deletes the corresponding media file from the filesystem as well as the tweet from Twitter.
+    This function checks if the memory list exceeds a predefined maximum size (MAX_MEMORY_SIZE). If it does, the function
+    removes the oldest entry from the memory and deletes the corresponding media file from the filesystem as well as the tweet from Twitter.
 
     Parameters:
         - memory (list): A list of tuples, where each tuple contains the path to a media file and the tweet ID.
@@ -76,7 +80,7 @@ def manage_memory(memory : list[list[str]], api : tweepy.API) -> None:
     """
 
     MAX_MEMORY_SIZE = 30
-    if len(memory) > MAX_MEMORY_SIZE:
+    while len(memory) > MAX_MEMORY_SIZE:
         media_path, csv_path, tweet_id = memory.pop(0)
         logging.info(f"Removing media file: {media_path}, csv file: {csv_path} and tweet with ID: {tweet_id}")
         os.remove(media_path)

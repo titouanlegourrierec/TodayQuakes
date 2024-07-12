@@ -1,4 +1,5 @@
 from datetime import datetime, date, timedelta, timezone
+import json
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -27,8 +28,21 @@ def fetch_earthquake_data(starttime : str, endtime : str) -> dict:
     """
 
     url = f"https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime={starttime}&endtime={endtime}"
+    logging.info(f"fetching data at {url}")
     response = requests.get(url)
     earthquake_json = response.json()
+
+    if response.status_code == 200:
+        try:
+            earthquake_json = response.json()
+        except json.JSONDecodeError:
+            error_message = "Failed to decode JSON."
+            print(error_message)
+            logging.error(error_message)
+    else:
+        error_message = f"Failed to fetch data. Status code: {response.status_code}"
+        print(error_message)
+        logging.error(error_message)
 
     return earthquake_json
 
@@ -181,10 +195,10 @@ def main():
     df = process_earthquake_data(earthquake_json=earthquake_json)
     earthquakes_geodata = create_geodataframe(df)
     plot_earthquakes(df, filename=starttime)
+    logging.info(f"Map of earthquakes for {starttime} generated successfully. Image saved at 'outputs/{starttime}.png'.")
 
-    logging.info(f"Earthquake data for {starttime} processed successfully. Saving to CSV at 'data/{starttime}.csv'.")
     df.to_csv(f"data/{starttime}.csv", index=False)
-
+    logging.info(f"Earthquake data for {starttime} processed successfully. CSV saved at 'data/{starttime}.csv'.")
     logging.info(f"DailyQuakes.py executed successfully.")
 
 if __name__ == "__main__":

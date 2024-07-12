@@ -42,9 +42,10 @@ jobs:
       run: echo "DATE=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
 
     - name: Commit and Push DailyQuakes.py changes
+      if: always()
       run: |
-        git config --global user.name 'github-actions[bot]'
-        git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+        git config --global user.name 'Titouan Le Gourrierec'
+        git config --global user.email 'titouanlegourrierec@icloud.com'
         git add .
         git commit -m "Update from DailyQuakes.py and bot.py on ${{ env.DATE }}" || true
         git push
