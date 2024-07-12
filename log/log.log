@@ -9,3 +9,17 @@
 2024-07-11 10:27:27,050 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
 2024-07-11 10:27:29,018 - INFO - Posting tweet. (post_tweet executed in 1.97 seconds)
 2024-07-11 10:27:29,019 - INFO - Managing memory. (manage_memory executed in 0.00 seconds)
+2024-07-12 05:07:59,536 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.58 seconds)
+2024-07-12 05:07:59,537 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2024-07-12 05:08:01,582 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 2.04 seconds)
+2024-07-12 05:08:01,582 - INFO - Earthquake data for 2024-7-11 processed successfully. Saving to CSV at 'data/2024-7-11.csv'.
+2024-07-12 05:08:01,584 - INFO - DailyQuakes.py executed successfully.
+2024-07-12 05:08:02,481 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2024-07-12 05:08:02,483 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2024-07-12 05:08:04,725 - INFO - Posting tweet. (post_tweet executed in 2.24 seconds)
+2024-07-12 05:08:04,725 - INFO - Managing memory. (manage_memory executed in 0.00 seconds)
+2024-07-12 05:08:04,726 - INFO - bot.py executed successfully.
+
+ --- 
+
+
