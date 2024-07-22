@@ -180,3 +180,20 @@
  --- 
 
 
+2024-07-22 05:08:39,484 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-7-21&endtime=2024-7-22
+2024-07-22 05:08:40,117 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.63 seconds)
+2024-07-22 05:08:40,118 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2024-07-22 05:08:42,184 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 2.06 seconds)
+2024-07-22 05:08:42,184 - INFO - Map of earthquakes for 2024-7-21 generated successfully. Image saved at 'outputs/2024-7-21.png'.
+2024-07-22 05:08:42,186 - INFO - Earthquake data for 2024-7-21 processed successfully. CSV saved at 'data/2024-7-21.csv'.
+2024-07-22 05:08:42,186 - INFO - DailyQuakes.py executed successfully.
+2024-07-22 05:08:43,141 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2024-07-22 05:08:43,143 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2024-07-22 05:08:45,477 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/1815252619734249911'.
+2024-07-22 05:08:45,477 - INFO - Posting tweet. (post_tweet executed in 2.33 seconds)
+2024-07-22 05:08:45,477 - INFO - Managing memory. (manage_memory executed in 0.00 seconds)
+2024-07-22 05:08:45,477 - INFO - bot.py executed successfully.
+
+ --- 
+
+
