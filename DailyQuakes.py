@@ -142,8 +142,12 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     - filename (str): Path and name of the file to save the plot.
     """
 
+    # to ensure that the largest earthquakes are plotted on top
+    filtered_df = df.copy()
+    filtered_df = filtered_df.sort_values(by='Magnitude')
+
     # Define custom color map for earthquake magnitudes
-    colors = ["white", "yellow", "#CD0000","#430000"]
+    colors = ["#FFFF8B", "yellow", "#CD0000","#430000"]
     n_bins = 10
     cmap_name = "custom_hot"
     custom_hot = LinearSegmentedColormap.from_list(cmap_name, colors, N=n_bins)
@@ -152,26 +156,26 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     fig, ax = plt.subplots(facecolor='black', subplot_kw={'projection': ccrs.Robinson()}, figsize=(20, 20))
     ax.patch.set_facecolor('black')
 
-    # Plot earthquake data as scatter points
-    scatter = ax.scatter(df["Longitude"], df["Latitude"], transform=ccrs.PlateCarree(),
-                        s=30, c=df["Magnitude"], cmap=custom_hot, vmin=0, vmax=10, alpha=1, edgecolors='none')
-    
     # Add land and borders with custom styling
-    ax.add_feature(cfeature.LAND, edgecolor='white', facecolor='none', linewidth=0.75)
-    ax.add_feature(cfeature.BORDERS, edgecolor='white', facecolor='none', linewidth=0.75)
+    ax.add_feature(cfeature.LAND, edgecolor='white', facecolor='none', linewidth=0.75, zorder=1)
+    ax.add_feature(cfeature.BORDERS, edgecolor='white', facecolor='none', linewidth=0.75, zorder=2)
+
+    # Plot earthquake data as scatter points
+    scatter = ax.scatter(filtered_df["Longitude"], filtered_df["Latitude"], transform=ccrs.PlateCarree(),
+                        s=30, c=filtered_df["Magnitude"], cmap=custom_hot, vmin=0, vmax=9, alpha=1, edgecolors='none', zorder=3)
     
     # Customize plot appearance
     plt.setp(ax.spines.values(), color='black')
     plt.setp([ax.get_xticklines(), ax.get_yticklines()], color='black')
-    ax.set_xlim(-15000000, 15000000)
+    ax.set_xlim(-16000000, 17000000)
     ax.set_ylim(-7000000, 9000000)
 
     # Add and customize colorbar
-    cbar = plt.colorbar(scatter, fraction=0.015, pad = 0.03)
+    cbar = plt.colorbar(scatter, fraction=0.015, pad = 0.01)
     cbar.set_label('Magnitude', color='white', fontname='Inter', fontsize=12, labelpad=-15)
     plt.setp(cbar.ax.get_yticklabels(), color='white', fontname='Inter', fontsize=12)
-    cbar.set_ticks([0, 10])  
-    cbar.set_ticklabels(['0', '10'])  
+    cbar.set_ticks([0, 9])  
+    cbar.set_ticklabels(['0', '9'])  
 
     # Add text annotations
     fig.text(0.83, 0.675, "Earthquakes", color="white", ha="left", va="bottom", fontsize=18, fontname="Inter")
