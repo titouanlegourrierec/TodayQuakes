@@ -10,6 +10,7 @@ from config_logging import configure_logging, log_execution_time
 
 logging = configure_logging()
 
+
 @log_execution_time(message="Authenticating with Twitter API.")
 def authenticate_twitter() -> tuple[tweepy.Client, tweepy.API]:
     """
@@ -35,11 +36,12 @@ def authenticate_twitter() -> tuple[tweepy.Client, tweepy.API]:
     )
     auth = tweepy.OAuth1UserHandler(API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
     api = tweepy.API(auth)
-    
+
     return client, api
 
+
 @log_execution_time(message="Posting tweet.")
-def post_tweet(client : tweepy.Client, api : tweepy.API, message : str, image_path : str) -> tweepy.Response:
+def post_tweet(client: tweepy.Client, api: tweepy.API, message: str, image_path: str) -> tweepy.Response:
     """
     Posts a tweet with an image using the Twitter API.
 
@@ -55,16 +57,17 @@ def post_tweet(client : tweepy.Client, api : tweepy.API, message : str, image_pa
     Returns:
         - tweepy.Response: The response from the Twitter API after posting the tweet.
     """
-    
+
     media = api.media_upload(image_path)
-    response = client.create_tweet(text=message,media_ids=[media.media_id])
+    response = client.create_tweet(text=message, media_ids=[media.media_id])
 
     logging.info(f"Tweet posted at 'https://x.com/TodayQuakes/status/{response.data['id']}'.")
-    
+
     return response
 
+
 @log_execution_time(message="Managing memory.")
-def manage_memory(memory : list[list[str]], api : tweepy.API) -> None:
+def manage_memory(memory: list[list[str]], api: tweepy.API) -> None:
     """
     Manages the memory of posted tweets to avoid exceeding a maximum size.
 
@@ -87,6 +90,7 @@ def manage_memory(memory : list[list[str]], api : tweepy.API) -> None:
         os.remove(csv_path)
         api.destroy_status(tweet_id)
 
+
 def main() -> None:
     """
     Main function to automate daily Twitter posts.
@@ -103,11 +107,12 @@ def main() -> None:
     response = post_tweet(client, api, twitter_message(df, starttime), f"outputs/{starttime}.png")
 
     memory = np.load("data/memory.npy").tolist()
-    memory.append([f"outputs/{starttime}.png", f"data/{starttime}.csv",response.data["id"]])
+    memory.append([f"outputs/{starttime}.png", f"data/{starttime}.csv", response.data["id"]])
     manage_memory(memory, api)
     np.save("data/memory.npy", memory)
 
     logging.info("bot.py executed successfully.\n\n --- \n\n")
+
 
 if __name__ == "__main__":
     main()

@@ -14,8 +14,9 @@ from config_logging import configure_logging, log_execution_time
 
 logging = configure_logging()
 
+
 @log_execution_time(message="Fetching earthquake data from USGS API.")
-def fetch_earthquake_data(starttime : str, endtime : str) -> dict:
+def fetch_earthquake_data(starttime: str, endtime: str) -> dict:
     """
     Fetches earthquake data from the USGS Earthquake Catalog API.
 
@@ -46,8 +47,9 @@ def fetch_earthquake_data(starttime : str, endtime : str) -> dict:
 
     return earthquake_json
 
+
 @log_execution_time(message="Processing earthquake data.")
-def process_earthquake_data(earthquake_json : dict) -> pd.DataFrame:
+def process_earthquake_data(earthquake_json: dict) -> pd.DataFrame:
     """
     Processes earthquake data and returns it as a pandas DataFrame.
 
@@ -65,17 +67,17 @@ def process_earthquake_data(earthquake_json : dict) -> pd.DataFrame:
         if properties["type"] == "earthquake":
 
             # Convert Unix time to a readable format
-            time = datetime.fromtimestamp(properties["time"]/ 1000, tz=timezone.utc).strftime('%H:%M:%S')
+            time = datetime.fromtimestamp(properties["time"] / 1000, tz=timezone.utc).strftime('%H:%M:%S')
             mag = properties["mag"]
             geometry = feature["geometry"]
             lon, lat, depth = geometry["coordinates"]
-            
+
             time_list.append(time)
             mag_list.append(mag)
             lon_list.append(lon)
             lat_list.append(lat)
             depth_list.append(depth)
-            
+
     return pd.DataFrame({
         "Time": time_list,
         "Magnitude": mag_list,
@@ -84,8 +86,9 @@ def process_earthquake_data(earthquake_json : dict) -> pd.DataFrame:
         "Depth": depth_list
     })
 
+
 @log_execution_time(message="Generating Twitter message for earthquake data.")
-def twitter_message(df : pd.DataFrame, starttime : str) -> str:
+def twitter_message(df: pd.DataFrame, starttime: str) -> str:
     """
     Generates a message to be posted on Twitter based on the earthquake data.
 
@@ -117,7 +120,7 @@ def twitter_message(df : pd.DataFrame, starttime : str) -> str:
     return message
 
 
-def create_geodataframe(df : pd.DataFrame) -> gpd.GeoDataFrame:
+def create_geodataframe(df: pd.DataFrame) -> gpd.GeoDataFrame:
     """
     Converts a pandas DataFrame containing earthquake data into a GeoDataFrame.
 
@@ -132,8 +135,9 @@ def create_geodataframe(df : pd.DataFrame) -> gpd.GeoDataFrame:
 
     return gpd.GeoDataFrame(df, crs="EPSG:4326", geometry=earthquakes_geometry)
 
+
 @log_execution_time(message="Plotting earthquake data on a world map.")
-def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
+def plot_earthquakes(df: pd.DataFrame, filename: str) -> None:
     """
     Plots earthquake data on a world map and saves the figure.
 
@@ -147,7 +151,7 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     filtered_df = filtered_df.sort_values(by='Magnitude')
 
     # Define custom color map for earthquake magnitudes
-    colors = ["#FFFF8B", "yellow", "#CD0000","#430000"]
+    colors = ["#FFFF8B", "yellow", "#CD0000", "#430000"]
     n_bins = 10
     cmap_name = "custom_hot"
     custom_hot = LinearSegmentedColormap.from_list(cmap_name, colors, N=n_bins)
@@ -162,8 +166,8 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
 
     # Plot earthquake data as scatter points
     scatter = ax.scatter(filtered_df["Longitude"], filtered_df["Latitude"], transform=ccrs.PlateCarree(),
-                        s=30, c=filtered_df["Magnitude"], cmap=custom_hot, vmin=0, vmax=9, alpha=1, edgecolors='none', zorder=3)
-    
+                         s=30, c=filtered_df["Magnitude"], cmap=custom_hot, vmin=0, vmax=9, alpha=1, edgecolors='none', zorder=3)
+
     # Customize plot appearance
     plt.setp(ax.spines.values(), color='black')
     plt.setp([ax.get_xticklines(), ax.get_yticklines()], color='black')
@@ -171,11 +175,11 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
     ax.set_ylim(-7000000, 9000000)
 
     # Add and customize colorbar
-    cbar = plt.colorbar(scatter, fraction=0.015, pad = 0.01)
+    cbar = plt.colorbar(scatter, fraction=0.015, pad=0.01)
     cbar.set_label('Magnitude', color='white', fontname='Inter', fontsize=12, labelpad=-15)
     plt.setp(cbar.ax.get_yticklabels(), color='white', fontname='Inter', fontsize=12)
-    cbar.set_ticks([0, 9])  
-    cbar.set_ticklabels(['0', '9'])  
+    cbar.set_ticks([0, 9])
+    cbar.set_ticklabels(['0', '9'])
 
     # Add text annotations
     fig.text(0.83, 0.675, "Earthquakes", color="white", ha="left", va="bottom", fontsize=18, fontname="Inter")
@@ -185,6 +189,7 @@ def plot_earthquakes(df : pd.DataFrame, filename : str) -> None:
 
     # Save the figure
     plt.savefig(f"outputs/{filename}.png", dpi=300, bbox_inches='tight', facecolor='black')
+
 
 def main():
 
@@ -197,13 +202,13 @@ def main():
     # Fetch and process earthquake data
     earthquake_json = fetch_earthquake_data(starttime=starttime, endtime=endtime)
     df = process_earthquake_data(earthquake_json=earthquake_json)
-    earthquakes_geodata = create_geodataframe(df)
     plot_earthquakes(df, filename=starttime)
     logging.info(f"Map of earthquakes for {starttime} generated successfully. Image saved at 'outputs/{starttime}.png'.")
 
     df.to_csv(f"data/{starttime}.csv", index=False)
     logging.info(f"Earthquake data for {starttime} processed successfully. CSV saved at 'data/{starttime}.csv'.")
-    logging.info(f"DailyQuakes.py executed successfully.")
+    logging.info("DailyQuakes.py executed successfully.")
+
 
 if __name__ == "__main__":
     main()

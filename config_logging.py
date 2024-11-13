@@ -1,11 +1,12 @@
 import time
 import logging
-from functools import wraps
+
 
 def configure_logging():
     logging.basicConfig(filename='log/log.log', level=logging.INFO, format='%(asctime)s - %(levelname)s - %(message)s', filemode='a')
     logging.getLogger('matplotlib').setLevel(logging.ERROR)
     return logging
+
 
 def log_execution_time(message=None):
     def decorator(func):
