@@ -2969,3 +2969,21 @@
  --- 
 
 
+2024-12-25 05:09:15,518 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2024-12-24&endtime=2024-12-25
+2024-12-25 05:09:16,017 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.50 seconds)
+2024-12-25 05:09:16,018 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2024-12-25 05:09:17,812 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.79 seconds)
+2024-12-25 05:09:17,813 - INFO - Map of earthquakes for 2024-12-24 generated successfully. Image saved at 'outputs/2024-12-24.png'.
+2024-12-25 05:09:17,814 - INFO - Earthquake data for 2024-12-24 processed successfully. CSV saved at 'data/2024-12-24.csv'.
+2024-12-25 05:09:17,814 - INFO - DailyQuakes.py executed successfully.
+2024-12-25 05:09:18,766 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2024-12-25 05:09:18,770 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2024-12-25 05:09:20,779 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/1871785275036213530'.
+2024-12-25 05:09:20,779 - INFO - Posting tweet. (post_tweet executed in 2.01 seconds)
+2024-12-25 05:09:20,779 - INFO - Removing media file: outputs/2024-11-24.png, csv file: data/2024-11-24.csv and tweet with ID: 1860913834979991980
+2024-12-25 05:09:20,927 - INFO - Managing memory. (manage_memory executed in 0.15 seconds)
+2024-12-25 05:09:20,927 - INFO - bot.py executed successfully.
+
+ --- 
+
+
