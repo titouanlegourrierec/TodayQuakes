@@ -94,7 +94,7 @@ The main functions of the bot, including data retrieval, processing, plotting, a
 
 ## License
 
-Distributed under the GNU License. See [`LICENSE`](https://github.com/titouanlegourrierec/TodayQuakes/blob/main/LICENCE) for more information.
+Distributed under the MIT License. See [`LICENSE`](https://github.com/titouanlegourrierec/TodayQuakes/blob/main/LICENCE) for more information.
 
 <!----------------------------------------------------------------------->
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
