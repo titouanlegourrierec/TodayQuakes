@@ -1,14 +1,17 @@
 import os
 from datetime import date, timedelta
 
-import tweepy
-import pandas as pd
 import numpy as np
+import pandas as pd
+import tweepy
+from dotenv import load_dotenv
 
-from DailyQuakes import twitter_message
 from config_logging import configure_logging, log_execution_time
+from DailyQuakes import twitter_message
 
 logging = configure_logging()
+
+load_dotenv()
 
 
 @log_execution_time(message="Authenticating with Twitter API.")
@@ -29,6 +32,8 @@ def authenticate_twitter() -> tuple[tweepy.Client, tweepy.API]:
     API_KEY_SECRET = os.getenv("API_KEY_SECRET")
     ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
     ACCESS_TOKEN_SECRET = os.getenv("ACCESS_TOKEN_SECRET")
+    
+    print(API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 
     client = tweepy.Client(
         consumer_key=API_KEY, consumer_secret=API_KEY_SECRET,

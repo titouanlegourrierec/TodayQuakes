@@ -3,6 +3,7 @@ geopandas
 matplotlib
 numpy
 pandas
+python-dotenv
 requests
 shapely
 tweepy
