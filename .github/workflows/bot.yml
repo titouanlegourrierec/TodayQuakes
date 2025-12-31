@@ -2,7 +2,7 @@ name: Run Twitter Bot
 
 on:
   schedule:
-    - cron: '0 5 * * *'
+    - cron: "0 5 * * *"  # Runs daily at 05:00 UTC
   workflow_dispatch:
 
 permissions:
@@ -14,20 +14,20 @@ jobs:
 
     steps:
     - name: Checkout repository
-      uses: actions/checkout@v4
+      uses: actions/checkout@v6
 
-    - name: Set up Python
-      uses: actions/setup-python@v5
+    - name: Install uv
+      uses: astral-sh/setup-uv@v7
       with:
-        python-version: '3.11.8'
+        cache-dependency-glob: pyproject.toml
+        enable-cache: true
+        python-version: "3.11.8"
 
     - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
+      run: uv sync
 
-    - name: Execute DailyQuakes.py
-      run: python DailyQuakes.py
+    - name: Execute daily_quakes.py
+      run: uv run src/daily_quakes.py
 
     - name: Generate and Tweet Image with bot.py
       env:
@@ -35,17 +35,17 @@ jobs:
         API_KEY_SECRET: ${{ secrets.API_KEY_SECRET }}
         ACCESS_TOKEN: ${{ secrets.ACCESS_TOKEN }}
         ACCESS_TOKEN_SECRET: ${{ secrets.ACCESS_TOKEN_SECRET }}
-      run: python bot.py
+      run: uv run src/bot.py
     
     - name: Get current date
       id: date
       run: echo "DATE=$(date '+%Y-%m-%d')" >> $GITHUB_ENV
 
-    - name: Commit and Push DailyQuakes.py changes
+    - name: Commit and Push daily_quakes.py changes
       if: always()
       run: |
-        git config --global user.name 'Titouan Le Gourrierec'
-        git config --global user.email 'titouanlegourrierec@icloud.com'
+        git config --global user.name 'github-actions[bot]'
+        git config --global user.email '41898282+github-actions[bot]@users.noreply.github.com'
         git add .
         git commit -m "Update from DailyQuakes.py and bot.py on ${{ env.DATE }}" || true
         git push
