@@ -33,7 +33,10 @@ def authenticate_twitter() -> tuple[tweepy.Client, tweepy.API]:
     ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
     ACCESS_TOKEN_SECRET = os.getenv("ACCESS_TOKEN_SECRET")
     
-    print(API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
+    # log if any of the keys are missing
+    if not all([API_KEY, API_KEY_SECRET, ACCESS_TOKEN, ACCESS_TOKEN_SECRET]):
+        logging.error("One or more Twitter API keys or tokens are missing in environment variables.")
+        raise EnvironmentError("Missing Twitter API keys or tokens.")
 
     client = tweepy.Client(
         consumer_key=API_KEY, consumer_secret=API_KEY_SECRET,
