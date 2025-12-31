@@ -9496,3 +9496,12 @@
  --- 
 
 
+2025-12-31 07:18:21,034 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2025-12-30&endtime=2025-12-31
+2025-12-31 07:18:21,292 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.26 seconds)
+2025-12-31 07:18:21,294 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2025-12-31 07:18:23,077 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.78 seconds)
+2025-12-31 07:18:23,077 - INFO - Map of earthquakes for 2025-12-30 generated successfully. Image saved at 'outputs/2025-12-30.png'.
+2025-12-31 07:18:23,079 - INFO - Earthquake data for 2025-12-30 processed successfully. CSV saved at 'data/2025-12-30.csv'.
+2025-12-31 07:18:23,079 - INFO - DailyQuakes.py executed successfully.
+2025-12-31 07:18:23,903 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 07:18:23,905 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
