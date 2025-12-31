@@ -9523,3 +9523,30 @@
  --- 
 
 
+2025-12-31 16:43:27,316 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 16:43:27,318 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2025-12-31 16:43:29,344 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/2006269964886687785'.
+2025-12-31 16:43:29,344 - INFO - Posting tweet. (post_tweet executed in 2.03 seconds)
+2025-12-31 16:43:29,346 - INFO - Removing media file: outputs/2025-11-29.png, csv file: data/2025-11-29.csv and tweet with ID: 1994997441565794699
+2025-12-31 16:43:29,623 - INFO - Managing memory. (manage_memory executed in 0.28 seconds)
+2025-12-31 16:43:29,623 - INFO - bot.py executed successfully.
+
+ --- 
+
+
+2025-12-31 17:19:42,395 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 17:20:24,995 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 17:20:35,238 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 17:21:19,432 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 17:22:08,108 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 17:22:17,525 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2025-12-31 17:22:17,528 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2025-12-31 17:22:19,509 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/2006279738307039582'.
+2025-12-31 17:22:19,510 - INFO - Posting tweet. (post_tweet executed in 1.98 seconds)
+2025-12-31 17:22:19,511 - INFO - Removing media file: outputs/2025-11-30.png, csv file: data/2025-11-30.csv and tweet with ID: 1995362200026833379
+2025-12-31 17:22:19,788 - INFO - Managing memory. (manage_memory executed in 0.28 seconds)
+2025-12-31 17:22:19,790 - INFO - bot.py executed successfully.
+
+ --- 
+
+
