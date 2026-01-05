@@ -9607,3 +9607,15 @@
 2026-01-04 05:17:23,560 - INFO - DailyQuakes.py executed successfully.
 2026-01-04 05:17:24,457 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
 2026-01-04 05:17:24,459 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-01-05 05:27:45,644 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-1-4&endtime=2026-1-5
+2026-01-05 05:27:46,160 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.52 seconds)
+2026-01-05 05:27:46,162 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2026-01-05 05:27:47,851 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.69 seconds)
+2026-01-05 05:27:47,851 - INFO - Map of earthquakes for 2026-1-4 generated successfully. Image saved at 'outputs/2026-1-4.png'.
+2026-01-05 05:27:47,854 - INFO - Earthquake data for 2026-1-4 processed successfully. CSV saved at 'data/2026-1-4.csv'.
+2026-01-05 05:27:47,854 - INFO - DailyQuakes.py executed successfully.
+2026-01-05 05:27:48,740 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2026-01-05 05:27:48,742 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-01-05 05:27:50,808 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/2008047768426655945'.
+2026-01-05 05:27:50,808 - INFO - Posting tweet. (post_tweet executed in 2.07 seconds)
+2026-01-05 05:27:50,808 - INFO - Removing media file: outputs/2025-12-1.png, csv file: data/2025-12-1.csv and tweet with ID: 1995722419286179889
