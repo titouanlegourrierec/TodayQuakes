@@ -2,7 +2,7 @@
 """Fetch, process, plot, and save daily earthquake data."""
 
 import json
-from datetime import datetime, timedelta, timezone
+from datetime import UTC, datetime, timedelta
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
@@ -68,7 +68,7 @@ def process_earthquake_data(earthquake_json: dict) -> pd.DataFrame:
         properties = feature["properties"]
         if properties["type"] == "earthquake":
             # Convert Unix time to a readable format
-            time = datetime.fromtimestamp(properties["time"] / 1000, tz=timezone.utc).strftime("%H:%M:%S")
+            time = datetime.fromtimestamp(properties["time"] / 1000, tz=UTC).strftime("%H:%M:%S")
             mag = properties["mag"]
             geometry = feature["geometry"]
             lon, lat, depth = geometry["coordinates"]
@@ -98,7 +98,7 @@ def twitter_message(df: pd.DataFrame, starttime: str) -> str:
         str: A message summarizing the earthquake data.
 
     """
-    parsed_date = datetime.strptime(starttime, "%Y-%m-%d").replace(tzinfo=timezone.utc)
+    parsed_date = datetime.strptime(starttime, "%Y-%m-%d").replace(tzinfo=UTC)
     formatted_date = parsed_date.strftime("%B %d, %Y")
 
     num_earthquakes = len(df)
@@ -196,7 +196,7 @@ def plot_earthquakes(df: pd.DataFrame, filename: str) -> None:
     fig.text(
         0.83,
         0.663,
-        datetime.strptime(filename, "%Y-%m-%d").replace(tzinfo=timezone.utc).strftime("%B %d, %Y"),
+        datetime.strptime(filename, "%Y-%m-%d").replace(tzinfo=UTC).strftime("%B %d, %Y"),
         color="white",
         ha="left",
         va="bottom",
@@ -213,7 +213,7 @@ def plot_earthquakes(df: pd.DataFrame, filename: str) -> None:
 def main() -> None:
     """Fetch, process, plot, and save daily earthquake data."""
     # Calculate the dates for fetching earthquake data
-    today = datetime.now(tz=timezone.utc).date()
+    today = datetime.now(tz=UTC).date()
     yesterday = today - timedelta(1)
     starttime = f"{yesterday.year}-{yesterday.month}-{yesterday.day}"
     endtime = f"{today.year}-{today.month}-{today.day}"
