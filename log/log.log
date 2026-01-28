@@ -245,3 +245,20 @@
 2026-01-27 05:18:34,304 - INFO - DailyQuakes.py executed successfully.
 2026-01-27 05:18:35,232 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
 2026-01-27 05:18:35,234 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-01-28 05:19:26,999 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-1-27&endtime=2026-1-28
+2026-01-28 05:19:27,509 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.51 seconds)
+2026-01-28 05:19:27,510 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2026-01-28 05:19:29,435 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.92 seconds)
+2026-01-28 05:19:29,435 - INFO - Map of earthquakes for 2026-1-27 generated successfully. Image saved at 'outputs/2026-1-27.png'.
+2026-01-28 05:19:29,439 - INFO - Earthquake data for 2026-1-27 processed successfully. CSV saved at 'data/2026-1-27.csv'.
+2026-01-28 05:19:29,439 - INFO - DailyQuakes.py executed successfully.
+2026-01-28 05:19:30,407 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2026-01-28 05:19:30,410 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-01-28 05:19:32,259 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/2016380598416298239'.
+2026-01-28 05:19:32,259 - INFO - Posting tweet. (post_tweet executed in 1.85 seconds)
+2026-01-28 05:19:32,259 - INFO - Managing memory. (manage_memory executed in 0.00 seconds)
+2026-01-28 05:19:32,259 - INFO - bot.py executed successfully.
+
+ --- 
+
+
