@@ -483,3 +483,20 @@
  --- 
 
 
+2026-02-11 06:00:54,620 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-2-10&endtime=2026-2-11
+2026-02-11 06:00:55,122 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.50 seconds)
+2026-02-11 06:00:55,124 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2026-02-11 06:00:57,132 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 2.01 seconds)
+2026-02-11 06:00:57,132 - INFO - Map of earthquakes for 2026-2-10 generated successfully. Image saved at 'outputs/2026-2-10.png'.
+2026-02-11 06:00:57,136 - INFO - Earthquake data for 2026-2-10 processed successfully. CSV saved at 'data/2026-2-10.csv'.
+2026-02-11 06:00:57,136 - INFO - DailyQuakes.py executed successfully.
+2026-02-11 06:00:58,240 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2026-02-11 06:00:58,242 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-02-11 06:01:00,350 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/2021464464067797148'.
+2026-02-11 06:01:00,350 - INFO - Posting tweet. (post_tweet executed in 2.11 seconds)
+2026-02-11 06:01:00,350 - INFO - Managing memory. (manage_memory executed in 0.00 seconds)
+2026-02-11 06:01:00,351 - INFO - bot.py executed successfully.
+
+ --- 
+
+
