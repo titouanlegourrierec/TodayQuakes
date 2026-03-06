@@ -24,7 +24,7 @@ API_KEY_SECRET = os.getenv("API_KEY_SECRET")
 ACCESS_TOKEN = os.getenv("ACCESS_TOKEN")
 ACCESS_TOKEN_SECRET = os.getenv("ACCESS_TOKEN_SECRET")
 
-MAX_MEMORY_SIZE = 30
+MAX_MEMORY_SIZE = 7
 
 
 @log_execution_time(message="Authenticating with Twitter API.")
