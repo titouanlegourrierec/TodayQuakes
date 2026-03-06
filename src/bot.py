@@ -113,9 +113,26 @@ def manage_memory(memory: list[list[str]], api: tweepy.API) -> None:
         media_path, csv_path, tweet_id = memory.pop(0)
         msg = f"Removing media file: {media_path}, csv file: {csv_path} and tweet with ID: {tweet_id}"
         logging.info(msg)
-        Path(media_path).unlink()
-        Path(csv_path).unlink()
-        api.destroy_status(tweet_id)
+        # Remove media file if it exists
+        media_file = Path(media_path)
+        if media_file.exists():
+            media_file.unlink()
+        else:
+            msg = f"Media file not found: {media_path}"
+            logging.warning(msg)
+        # Remove csv file if it exists
+        csv_file = Path(csv_path)
+        if csv_file.exists():
+            csv_file.unlink()
+        else:
+            msg = f"CSV file not found: {csv_path}"
+            logging.warning(msg)
+        # Try to delete tweet
+        try:
+            api.destroy_status(tweet_id)
+        except tweepy.error.TweepyException as e:
+            msg = f"Failed to delete tweet {tweet_id}: {e}"
+            logging.warning(msg)
 
 
 def main() -> None:
