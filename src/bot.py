@@ -130,7 +130,7 @@ def manage_memory(memory: list[list[str]], api: tweepy.API) -> None:
         # Try to delete tweet
         try:
             api.destroy_status(tweet_id)
-        except tweepy.error.TweepyException as e:
+        except tweepy.errors.TweepyException as e:
             msg = f"Failed to delete tweet {tweet_id}: {e}"
             logging.warning(msg)
 
