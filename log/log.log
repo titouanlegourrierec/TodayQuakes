@@ -155,3 +155,23 @@
  --- 
 
 
+2026-03-13 05:39:39,900 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-3-12&endtime=2026-3-13
+2026-03-13 05:39:40,031 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.13 seconds)
+2026-03-13 05:39:40,033 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2026-03-13 05:39:41,478 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.45 seconds)
+2026-03-13 05:39:41,478 - INFO - Map of earthquakes for 2026-3-12 generated successfully. Image saved at 'outputs/2026-3-12.png'.
+2026-03-13 05:39:41,482 - INFO - Earthquake data for 2026-3-12 processed successfully. CSV saved at 'data/2026-3-12.csv'.
+2026-03-13 05:39:41,482 - INFO - DailyQuakes.py executed successfully.
+2026-03-13 05:39:42,411 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2026-03-13 05:39:42,413 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-03-13 05:39:43,941 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/2032330747080794497'.
+2026-03-13 05:39:43,942 - INFO - Posting tweet. (post_tweet executed in 1.53 seconds)
+2026-03-13 05:39:43,942 - INFO - Removing media file: outputs/2026-3-5.png, csv file: data/2026-3-5.csv and tweet with ID: 2029793434958172490
+2026-03-13 05:39:43,942 - WARNING - Media file not found: outputs/2026-3-5.png
+2026-03-13 05:39:43,942 - WARNING - CSV file not found: data/2026-3-5.csv
+2026-03-13 05:39:44,109 - INFO - Managing memory. (manage_memory executed in 0.17 seconds)
+2026-03-13 05:39:44,109 - INFO - bot.py executed successfully.
+
+ --- 
+
+
