@@ -6,14 +6,14 @@ from datetime import UTC, datetime, timedelta
 
 import cartopy.crs as ccrs
 import cartopy.feature as cfeature
-import geopandas as gpd
+import geopandas
 import matplotlib.pyplot as plt
 import pandas as pd
 import requests
 from matplotlib.colors import LinearSegmentedColormap
 from shapely.geometry import Point
 
-from config_logging import configure_logging, log_execution_time
+from src.config_logging import configure_logging, log_execution_time
 
 
 logging = configure_logging()
@@ -119,7 +119,7 @@ def twitter_message(df: pd.DataFrame, starttime: str) -> str:
     )
 
 
-def create_geodataframe(df: pd.DataFrame) -> gpd.GeoDataFrame:
+def create_geodataframe(df: pd.DataFrame) -> geopandas.GeoDataFrame:
     """
     Convert a pandas DataFrame containing earthquake data into a GeoDataFrame.
 
@@ -132,7 +132,7 @@ def create_geodataframe(df: pd.DataFrame) -> gpd.GeoDataFrame:
     """
     earthquakes_geometry = [Point(xy) for xy in zip(df["Longitude"], df["Latitude"], strict=False)]
 
-    return gpd.GeoDataFrame(df, crs="EPSG:4326", geometry=earthquakes_geometry)
+    return geopandas.GeoDataFrame(df, crs="EPSG:4326", geometry=earthquakes_geometry)
 
 
 @log_execution_time(message="Plotting earthquake data on a world map.")
