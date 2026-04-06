@@ -13,7 +13,7 @@ import requests
 from matplotlib.colors import LinearSegmentedColormap
 from shapely.geometry import Point
 
-from src.config_logging import configure_logging, log_execution_time
+from .config_logging import configure_logging, log_execution_time
 
 
 logging = configure_logging()

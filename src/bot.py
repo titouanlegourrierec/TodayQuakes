@@ -11,8 +11,8 @@ import pandas as pd
 import tweepy
 from dotenv import load_dotenv
 
-from src.config_logging import configure_logging, log_execution_time
-from src.daily_quakes import twitter_message
+from .config_logging import configure_logging, log_execution_time
+from .daily_quakes import twitter_message
 
 
 logging = configure_logging()
