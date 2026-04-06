@@ -11,8 +11,8 @@ import pandas as pd
 import tweepy
 from dotenv import load_dotenv
 
-from .config_logging import configure_logging, log_execution_time
-from .daily_quakes import twitter_message
+from config_logging import configure_logging, log_execution_time  # ty: ignore
+from daily_quakes import twitter_message  # ty: ignore
 
 
 logging = configure_logging()
