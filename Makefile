@@ -2,6 +2,8 @@
 
 SRC=.
 
+all: quality precommit clean
+
 lint:
 	ruff check --fix $(SRC)
 
