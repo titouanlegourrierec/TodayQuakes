@@ -889,3 +889,22 @@
  --- 
 
 
+2026-04-23 06:53:16,758 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-4-22&endtime=2026-4-23
+2026-04-23 06:53:16,898 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.14 seconds)
+2026-04-23 06:53:16,900 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2026-04-23 06:53:18,352 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.45 seconds)
+2026-04-23 06:53:18,352 - INFO - Map of earthquakes for 2026-4-22 generated successfully. Image saved at 'outputs/2026-4-22.png'.
+2026-04-23 06:53:18,356 - INFO - Earthquake data for 2026-4-22 processed successfully. CSV saved at 'data/2026-4-22.csv'.
+2026-04-23 06:53:18,356 - INFO - DailyQuakes.py executed successfully.
+2026-04-23 06:53:19,252 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2026-04-23 06:53:19,254 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-04-23 06:53:20,755 - INFO - Tweet posted at 'https://x.com/TodayQuakes/status/2047207174938697912'.
+2026-04-23 06:53:20,755 - INFO - Posting tweet. (post_tweet executed in 1.50 seconds)
+2026-04-23 06:53:20,755 - INFO - Removing media file: outputs/2026-4-14.png, csv file: data/2026-4-14.csv and tweet with ID: 2044301057652670486
+2026-04-23 06:53:20,815 - WARNING - Failed to delete tweet 2044301057652670486: 404 Not Found
+2026-04-23 06:53:20,815 - INFO - Managing memory. (manage_memory executed in 0.06 seconds)
+2026-04-23 06:53:20,815 - INFO - bot.py executed successfully.
+
+ --- 
+
+
