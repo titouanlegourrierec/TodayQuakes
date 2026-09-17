@@ -3622,3 +3622,12 @@
 2026-09-16 09:34:07,200 - INFO - DailyQuakes.py executed successfully.
 2026-09-16 09:34:07,952 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
 2026-09-16 09:34:07,954 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-09-17 09:42:25,085 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-9-16&endtime=2026-9-17
+2026-09-17 09:42:25,744 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.66 seconds)
+2026-09-17 09:42:25,745 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2026-09-17 09:42:26,971 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.23 seconds)
+2026-09-17 09:42:26,971 - INFO - Map of earthquakes for 2026-9-16 generated successfully. Image saved at 'outputs/2026-9-16.png'.
+2026-09-17 09:42:26,975 - INFO - Earthquake data for 2026-9-16 processed successfully. CSV saved at 'data/2026-9-16.csv'.
+2026-09-17 09:42:26,975 - INFO - DailyQuakes.py executed successfully.
+2026-09-17 09:42:27,810 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2026-09-17 09:42:27,812 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
