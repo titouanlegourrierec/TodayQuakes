@@ -4064,3 +4064,12 @@
 2026-11-05 12:48:58,737 - INFO - DailyQuakes.py executed successfully.
 2026-11-05 12:48:59,710 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
 2026-11-05 12:48:59,712 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
+2026-11-06 12:32:49,037 - INFO - fetching data at https://earthquake.usgs.gov/fdsnws/event/1/query?format=geojson&starttime=2026-11-5&endtime=2026-11-6
+2026-11-06 12:32:49,205 - INFO - Fetching earthquake data from USGS API. (fetch_earthquake_data executed in 0.17 seconds)
+2026-11-06 12:32:49,206 - INFO - Processing earthquake data. (process_earthquake_data executed in 0.00 seconds)
+2026-11-06 12:32:50,927 - INFO - Plotting earthquake data on a world map. (plot_earthquakes executed in 1.72 seconds)
+2026-11-06 12:32:50,927 - INFO - Map of earthquakes for 2026-11-5 generated successfully. Image saved at 'outputs/2026-11-5.png'.
+2026-11-06 12:32:50,930 - INFO - Earthquake data for 2026-11-5 processed successfully. CSV saved at 'data/2026-11-5.csv'.
+2026-11-06 12:32:50,931 - INFO - DailyQuakes.py executed successfully.
+2026-11-06 12:32:51,814 - INFO - Authenticating with Twitter API. (authenticate_twitter executed in 0.00 seconds)
+2026-11-06 12:32:51,816 - INFO - Generating Twitter message for earthquake data. (twitter_message executed in 0.00 seconds)
